@@ -1,3 +1,5 @@
+// eslint-disable-next-line react/display-name
+
 import styles from '../styles/Home.module.css';
 import { useEffect, useState, useRef } from 'react';
 import io from 'socket.io-client'
@@ -7,6 +9,11 @@ let socket;
 const Home = () => {
 
   const board = useRef();
+
+  useEffect(() => {
+    document.addEventListener('mousemove', onMouseMove);
+    return () => null;
+  });
 
   useEffect(() => {
     socketInitializer()
@@ -48,18 +55,11 @@ const Home = () => {
     socket.emit('cursor', {x : e.pageX, y : e.pageY});
   }
 
-  useEffect(() => {
-    document.addEventListener('mousemove', onMouseMove);
-    return () => null;
-  });
-
   return (
     <div className={styles.container}>
       <div className={styles.board} ref={board}></div>
     </div>
   )
 }
-
-Home.displayName = 'Home';
 
 export default Home;
