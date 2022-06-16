@@ -4,7 +4,7 @@ import io from 'socket.io-client'
 
 let socket;
 
-export default function Home() {
+const Home = () =>{
 
   const board = useRef();
 
@@ -59,3 +59,5 @@ export default function Home() {
     </div>
   )
 }
+
+export default Home;
